@@ -7,4 +7,4 @@
 клонировать проект на устройство (к примеру)
 открыть cmd 
 ввести: 
-java -cp C:\Users\facep\IdeaProjects\testTask\src\main\java org.example.Main
+java -cp C:путь до проекта\src\main\java org.example.Main
