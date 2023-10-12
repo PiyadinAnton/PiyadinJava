@@ -30,8 +30,11 @@ public class Main {
     }
     public void quest1ver2(){
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Введите число");
+
         String result = (scanner.nextInt() > 7) ? "Привет":"Ничего";
+
         System.out.println(result);
     }
 
@@ -50,8 +53,11 @@ public class Main {
 
     public void quest2ver2(){
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Введите имя: ");
+
         String result = (scanner.nextLine().equals("Вячеслав") ? "Привет, Вячеслав" : "No name");
+
         System.out.println(result);
 
     }
