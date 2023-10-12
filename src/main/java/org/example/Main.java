@@ -13,7 +13,6 @@ public class Main {
         main.quest2ver2();
         main.quest3();
         main.quest3ver2();
-
     }
 
     public void quest1() {
