@@ -1,8 +1,8 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +12,7 @@ public class Main {
         main.quest2();
         main.quest2ver2();
         main.quest3();
+        main.quest3ver2();
 
     }
 
@@ -28,12 +29,13 @@ public class Main {
             System.out.println("Число меньше или = 7, Ничего не выведу");
         }
     }
-    public void quest1ver2(){
+
+    public void quest1ver2() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите число");
 
-        String result = (scanner.nextInt() > 7) ? "Привет":"Ничего";
+        String result = (scanner.nextInt() > 7) ? "Привет" : "Ничего";
 
         System.out.println(result);
     }
@@ -51,7 +53,7 @@ public class Main {
         }
     }
 
-    public void quest2ver2(){
+    public void quest2ver2() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите имя: ");
@@ -61,33 +63,44 @@ public class Main {
         System.out.println(result);
 
     }
+
     public void quest3() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите массив со случайными значениями : ");
+        System.out.print("Введите размер массива: ");
+        int size = scanner.nextInt();
 
+        System.out.print("Введите элементы массива:");
+        int[] numbers = new int[size];
+        for (int i = 0; i < size; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+        Arrays.stream(numbers)
+                .filter(number -> number % 3 == 0)
+                .forEach(System.out::println);
+    }
+
+    public void quest3ver2() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите массив в формате {элемент1,элемент2,элемент3,...}: ");
         String input = scanner.nextLine();
-        String regex = "\\d+";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(input);
 
-        int[] array = new int[0];
-        while (matcher.find()) {
-            int number = Integer.parseInt(matcher.group());
+        StringTokenizer tokenizer = new StringTokenizer(input, "{}, ");
+        int size = tokenizer.countTokens();
+
+        int[] numbers = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            numbers[i] = Integer.parseInt(tokenizer.nextToken());
+        }
+
+        System.out.println("Элементы массива, кратные 3:");
+        for (int number : numbers) {
             if (number % 3 == 0) {
-
-                array = resizeArray(array, array.length + 1);
-                array[array.length - 1] = number;
+                System.out.println(number);
             }
         }
-        System.out.print("Числа массива, кратные 3: ");
-        for (int element : array) {
-            System.out.print(element + " ");
-        }
-    }
-    private static int[] resizeArray(int[] array, int newSize) {
-        int[] newArray = new int[newSize];
-        System.arraycopy(array, 0, newArray, 0, Math.min(array.length, newSize));
-        return newArray;
     }
 }
